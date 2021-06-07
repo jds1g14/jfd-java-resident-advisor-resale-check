@@ -71,15 +71,16 @@ public class ResidentAdvisorResaleServiceImplTest {
     public void isTicketAvailableTrueTest() throws Exception {
 
 
-        Boolean result = residentAdvisorResaleService.isTicketAvailable(mockValidTicketObjectString, "Car Parking Pass (Valid for 1 car)", mockValidUrl);
+        boolean result = residentAdvisorResaleService.isTicketAvailable(mockValidTicketObjectString, "Car Parking Pass (Valid for 1 car)", mockValidUrl);
         Assertions.assertTrue(result);
     }
 
+    //Obviously this test might fail at some point if it becomes available to buy :( F's in the chat for Houghton Festival 2021
     @Test
     public void isTicketAvailableFalseTest() throws Exception {
 
 
-        Boolean result = residentAdvisorResaleService.isTicketAvailable(mockValidTicketObjectString, "General Admission Weekend (Inc. Camping)", mockValidUrl);
+        boolean result = residentAdvisorResaleService.isTicketAvailable(mockValidTicketObjectString, "General Admission Weekend (Inc. Camping)", mockValidUrl);
         Assertions.assertFalse(result);
     }
 
