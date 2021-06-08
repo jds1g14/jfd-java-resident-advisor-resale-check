@@ -7,5 +7,6 @@
 # Version History
 
     v0.1 - Initial Commit
+    v0.2 - Introduction of user input (Main method args)
 
 
