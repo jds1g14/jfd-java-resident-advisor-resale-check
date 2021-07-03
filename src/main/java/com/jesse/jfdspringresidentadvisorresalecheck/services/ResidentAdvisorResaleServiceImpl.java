@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.io.IOException;
 
 @Service
@@ -49,18 +50,11 @@ public class ResidentAdvisorResaleServiceImpl implements ResidentAdvisorResaleSe
     @Override
     public String getTicketsObject(HtmlPage htmlPage) {
 
-        //TODO Validate is RA page
-
-        // Go in to hear if the result of is ra page true
-
         // Retrieve the block of html related to the ticket object
         DomElement ticketDOM = htmlPage.getElementById("tickets");
-        String ticketDOMString = ticketDOM.asText();
+
         // Have to parse it using asText() instead of .tostring or toxml else it returns some garbage object
-
-        //Run validator job to check if it is a resident advisor ticket object
-
-        return ticketDOMString;
+        return ticketDOM.asText();
     }
 
     /**
@@ -74,14 +68,13 @@ public class ResidentAdvisorResaleServiceImpl implements ResidentAdvisorResaleSe
 
         // TODO expand later to allow for multiple tickets to be queried
 
-        //TODO expand this method to add some alerting ? Would be hella cool if a text could be sent or a windows/mac os alert was sent
-
         String ticketStringToValidate = "unchecked " + ticketName;
         boolean ticketAvailable = false;
 
         if (ticketDOMString.contains(ticketName)) {
             if (ticketDOMString.contains(ticketStringToValidate)) {
                 LOG.info('"' + ticketName + '"' +  " tickets are available, visit the event page to purchase !");
+                displayNotification(ticketName);
                 ticketAvailable = true;
             } else {
                 LOG.info('"' + ticketName + '"' + " tickets are not currently available !");
@@ -92,6 +85,28 @@ public class ResidentAdvisorResaleServiceImpl implements ResidentAdvisorResaleSe
             throw new Exception("Invalid Ticket Type Error");
         }
         return ticketAvailable;
+    }
+
+    /**
+     * @param ticketName - the name/type of the ticket that we are checking is available
+     */
+    public void displayNotification(String ticketName) throws AWTException {
+
+        System.setProperty("java.awt.headless", "false");
+        SystemTray tray = SystemTray.getSystemTray();
+
+        //If the icon is a file
+        Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
+
+        TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
+        //Let the system resize the image if needed
+        trayIcon.setImageAutoSize(true);
+        //Set tooltip text for the tray icon
+        trayIcon.setToolTip("System tray icon demo");
+        tray.add(trayIcon);
+
+        trayIcon.displayMessage("Resident Advisor Checker", ticketName + " tickets are available on ra.co", TrayIcon.MessageType.INFO);
+
     }
 
 }

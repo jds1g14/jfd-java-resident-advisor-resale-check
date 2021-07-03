@@ -33,10 +33,10 @@ public class MasterControllerTest {
     String validTicketName;
 
     @Value("999")
-    String validRefreshPeriod;
+    int validRefreshPeriod;
 
     @Value("4")
-    String invalidRefreshPeriod;
+    int invalidRefreshPeriod;
 
     @Value("22")
     String invalidMockValidUrl;

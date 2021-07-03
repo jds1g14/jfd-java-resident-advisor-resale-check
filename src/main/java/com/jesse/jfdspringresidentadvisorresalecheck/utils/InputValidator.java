@@ -41,11 +41,9 @@ public class InputValidator {
      *
      * @param refreshPeriod - how frequently the page should be queried
      */
-    public static void isValidRefreshPeriod (final String refreshPeriod) throws Exception {
+    public static void isValidRefreshPeriod (final int refreshPeriod) throws Exception {
 
-        int refreshPeriodInt =  Integer.parseInt(refreshPeriod);
-        // TODO - Test to send in something that isn't an integer
-        if (refreshPeriodInt < 5) {
+        if (refreshPeriod < 5) {
             LOG.error("Refresh period is too short, must be at least 5 minutes (pls don't DDOS Resident Advisor)");
             throw new Exception("Invalid Refresh period Error");
         } else {
