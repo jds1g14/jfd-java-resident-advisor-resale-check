@@ -24,6 +24,6 @@ public interface ResidentAdvisorResaleService {
      * @param ticketName - the name/type of the ticket that we are checking is available
      * @return a Boolean indicating if the ticket is available or not
      */
-   Boolean isTicketAvailable(final String ticketDOMString, final String ticketName, final String eventUrl) throws Exception;
+   boolean isTicketAvailable(final String ticketDOMString, final String ticketName, final String eventUrl) throws Exception;
 
 }

@@ -4,13 +4,13 @@ package com.jesse.jfdspringresidentadvisorresalecheck.services;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
+import com.jesse.jfdspringresidentadvisorresalecheck.utils.ResidentAdvisorValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-
-import java.util.List;
 
 @Service
 public class ResidentAdvisorResaleServiceImpl implements ResidentAdvisorResaleService {
@@ -26,11 +26,9 @@ public class ResidentAdvisorResaleServiceImpl implements ResidentAdvisorResaleSe
      */
     @Override
     public HtmlPage getEventWebpage(String eventUrl) throws IOException {
-        //TODO This will be encapsulated into a loop
-        // url will be validated during the input bit, to check if it contains ra.co
 
         //TODO create a config class aka appconfig
-        HtmlPage webpage = null;
+        HtmlPage webpage;
         WebClient webClient = new WebClient(BrowserVersion.CHROME);
 
         //Disable css and jscript else we get hella errors
@@ -72,7 +70,7 @@ public class ResidentAdvisorResaleServiceImpl implements ResidentAdvisorResaleSe
      * @return a boolean flag indicating if the ticket is available for purchase
      */
     @Override
-    public Boolean isTicketAvailable(String ticketDOMString, String ticketName, String eventUrl) throws Exception {
+    public boolean isTicketAvailable(String ticketDOMString, String ticketName, String eventUrl) throws Exception {
 
         // TODO expand later to allow for multiple tickets to be queried
 
@@ -91,7 +89,6 @@ public class ResidentAdvisorResaleServiceImpl implements ResidentAdvisorResaleSe
         } else {
             LOG.error('"' + ticketName + '"' + " is not in the list of tickets for the event at " + eventUrl +  ". Please check" +
                      " the ticket type corresponds to one of those on the event page.");
-            //TODO should retrieve this from a constants or application.props file
             throw new Exception("Invalid Ticket Type Error");
         }
         return ticketAvailable;
