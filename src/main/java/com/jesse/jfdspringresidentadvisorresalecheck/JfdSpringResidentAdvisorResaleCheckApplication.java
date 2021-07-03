@@ -11,7 +11,7 @@ public class JfdSpringResidentAdvisorResaleCheckApplication {
 		SpringApplication.run(JfdSpringResidentAdvisorResaleCheckApplication.class, args);
 
 		String url = args[0];
-		String refreshPeriod = args[1];
+		int refreshPeriod = Integer.parseInt(args[1]);
 		String ticketName = args[2];
 
 		MasterController masterController = new MasterController();

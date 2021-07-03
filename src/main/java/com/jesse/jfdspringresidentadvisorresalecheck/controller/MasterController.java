@@ -13,7 +13,7 @@ public class MasterController {
      */
     private static final Logger LOG = LoggerFactory.getLogger(MasterController.class);
 
-    public Integer Controller (String url, String refreshPeriod, String ticketName) throws Exception {
+    public Integer Controller (String url, int refreshPeriod, String ticketName) throws Exception {
 
         InputValidator.isValidResidentAdvisorUrl(url);
         InputValidator.isValidRefreshPeriod(refreshPeriod);
@@ -21,11 +21,18 @@ public class MasterController {
         ResidentAdvisorResaleController residentAdvisorResaleController = new ResidentAdvisorResaleController();
 
         //1st if condition added for testing purposes. u think I'm waiting 5 mins per unit-test, what's all that about ?
-        if (refreshPeriod.equals("999")) {
+        if (refreshPeriod == 999) {
             residentAdvisorResaleController.Controller(url, ticketName);
         } else {
-            //While loop
-            LOG.error("Hello");
+            int loopInstancesIn9Hours = (9 * 60) / refreshPeriod;
+            int count = 0 ;
+
+            // Break out of loop after 9 hours
+            while (count < loopInstancesIn9Hours ) {
+                Thread.sleep((long) refreshPeriod * 1000);
+                residentAdvisorResaleController.Controller(url, ticketName);
+                count++;
+            }
         }
 
         return 1;

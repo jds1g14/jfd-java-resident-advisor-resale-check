@@ -1,6 +1,8 @@
 package com.jesse.jfdspringresidentadvisorresalecheck.services;
 
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+
+import java.awt.*;
 import java.io.IOException;
 
 public interface ResidentAdvisorResaleService {
@@ -25,5 +27,10 @@ public interface ResidentAdvisorResaleService {
      * @return a Boolean indicating if the ticket is available or not
      */
    boolean isTicketAvailable(final String ticketDOMString, final String ticketName, final String eventUrl) throws Exception;
+
+    /**
+     * @param ticketName - the name/type of the ticket that we are checking is available
+     */
+   void displayNotification(String ticketName) throws AWTException;
 
 }
