@@ -29,9 +29,11 @@ public class MasterController {
 
             // Break out of loop after 9 hours
             while (count < loopInstancesIn9Hours ) {
-                Thread.sleep((long) refreshPeriod * 1000);
+
                 residentAdvisorResaleController.Controller(url, ticketName);
+                Thread.sleep((long) refreshPeriod * 60000);
                 count++;
+
             }
         }
 
