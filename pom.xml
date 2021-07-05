@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.jesse</groupId>
 	<artifactId>jfd-spring-resident-advisor-resale-check</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.1</version>
 	<name>jfd-spring-resident-advisor-resale-check</name>
 	<description>A java spring app that queries a ra event page for ticket availability</description>
 	<properties>

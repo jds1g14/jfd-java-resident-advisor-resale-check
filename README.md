@@ -1,4 +1,4 @@
-# jfd-spring-resident-advisor-resale-check v1.0
+# jfd-spring-resident-advisor-resale-check v2.0.1
 
 # Getting Started
     1. Generate executable jar using 'mvn clean package'
@@ -18,5 +18,6 @@
     v0.2 - Introduction of user input (Main method args)
     v0.3 - Display Notifications and added looping for ticket check
     v1.0 - Fix issue where refresh period would elapse before checking webpage
+    V.2.0.1 - Added ability to query multiple releases and addition of jar to github
 
 
