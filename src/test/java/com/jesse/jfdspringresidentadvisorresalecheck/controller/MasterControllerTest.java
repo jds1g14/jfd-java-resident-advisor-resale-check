@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -30,7 +31,7 @@ public class MasterControllerTest {
     String mockValidUrl;
 
     @Value("${valid.ticket.name}")
-    String validTicketName;
+    ArrayList<String> validTicketName;
 
     @Value("999")
     int validRefreshPeriod;
