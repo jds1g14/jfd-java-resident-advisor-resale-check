@@ -30,7 +30,6 @@ public class InputValidator {
      * @param refreshPeriod - how frequently the page should be queried
      */
     public static void isValidRefreshPeriod (int refreshPeriod) throws Exception {
-
         if (refreshPeriod < 5) {
             throw new Exception("Refresh period is too short, must be at least 5 minutes (pls don't DDOS Resident Advisor)");
         } else {

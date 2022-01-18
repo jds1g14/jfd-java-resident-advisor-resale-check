@@ -27,7 +27,7 @@ public class DisplayTray {
         this.trayIcon.setImageAutoSize(true);
         //Set tooltip text for the tray icon
         this.trayIcon.setToolTip("System tray icon demo");
-
+        
         tray.add(this.trayIcon);
 
     }
@@ -36,14 +36,14 @@ public class DisplayTray {
      * Display a java tray icon indicating that the ticket is available
      */
     public void displayTicketAvailable(String ticketName) {
-        this.trayIcon.displayMessage("Resident Advisor Checker", ticketName +
-                " tickets are available on ra.co", TrayIcon.MessageType.INFO);
+        this.trayIcon.displayMessage("Resident Advisor Ticket Checker", '"' + ticketName + '"' +
+                " tickets are now available on ra.co", TrayIcon.MessageType.INFO);
     }
 
     /**
      * Display a java tray icon indicating that an error has occured
      */
     public void displayError() {
-        this.trayIcon.displayMessage("Resident Advisor Checker", "An error has occurred, please view the console logs", TrayIcon.MessageType.ERROR);
+        this.trayIcon.displayMessage("Resident Advisor Ticket Checker", "An error has occurred, please view the console logs", TrayIcon.MessageType.ERROR);
     }
 }

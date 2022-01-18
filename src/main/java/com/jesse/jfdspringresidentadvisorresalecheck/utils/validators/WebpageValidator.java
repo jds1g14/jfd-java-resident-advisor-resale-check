@@ -13,7 +13,6 @@ public class WebpageValidator {
      */
     private static final Logger LOG = LoggerFactory.getLogger(WebpageValidator.class);
 
-
     /**
      *
      * @param htmlPage the HtmlPage object of the webpage being queried
@@ -22,16 +21,15 @@ public class WebpageValidator {
     public static boolean isValidResidentAdvisorEventPage (HtmlPage htmlPage) {
 
         final String htmlPageString = htmlPage.asText();
-
         final boolean containsResAdvisor = htmlPageString.contains(RA);
         final boolean containsRATickets = htmlPageString.contains("RA Tickets");
         final boolean containsBuyTickets = htmlPageString.contains("Buy tickets");
 
-        if ((containsResAdvisor == containsRATickets == containsBuyTickets) && (containsResAdvisor)) {
+        if ((containsResAdvisor == containsRATickets) && (containsResAdvisor == containsBuyTickets) && containsResAdvisor) {
             LOG.info("The url provided corresponds to a valid Resident Advisor Webpage");
             return true;
         } else {
-            LOG.info("The url provided does not correspond to a valid Resident Advisor Event Webpage");
+            LOG.error("The url provided does not correspond to a valid Resident Advisor Event Webpage");
             return false;
         }
 
